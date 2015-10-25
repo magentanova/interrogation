@@ -2,6 +2,8 @@ window.theScript =
 	{
 		artie: {
 			0: {
+				hint: '',
+				triggerTokens: [],
 				rotationLines: [
 					"hi i'm wimpy artie"
 				],
@@ -10,6 +12,8 @@ window.theScript =
 		},
 		judd: {
 			0: {
+				hint: '',
+				triggerTokens: [],
 				rotationLines: [
 					"hi i'm cool judd"
 				],
