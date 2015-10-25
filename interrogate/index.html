@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css">
+	<link href='http://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
+            crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
+            scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
+            rel='stylesheet' type='text/css'>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="interrogate.js"></script>
+	<link rel="SHORTCUT ICON" href="../../images/jailbars.ico" type="image/x-icon" />
+	<link rel="ICON" href="../../images/jailbars.ico" type="image/ico" />
+	<title> behold the man </title>
+	</head>
+	<body onload = "setScroll();initChat()">
+		<div id="briefContainer">
+			<p id="briefTitle"><strong> Brief </strong> <br></p>
+			<ul id="briefText">  
+				<p>- August 9th, 1938. Boys at play in unincorporated Chippewa County stumble upon the body of a child. Identifying the remains proves a challenge: the jaw has been violently struck, displacing the teeth; face, hands and genitals have been dissolved with hydrochloric acid. 
+				<br><br>
+				- The last persons believed to have seen the boy are 19-year-old Artie Flood, second cousin to the victim, and 21-year-old Judd Dresher. Both have been taking in for questioning.
+ 			</p>
+			</ul>
+		</div>
+		<div class="roomsContainer">
+			<div class="interrogationRoom" id="room1">
+				<p class="prisoner"> Prisoner Flood </p>
+				<div class="prisonerResponse" id="prisonerResponseA" data-level="0">
+						<ul class="responseList" id="responseListA"></ul>			
+				</div>
+				<p class="command" >address the prisoner:</p>
+
+				<input type="text" class="userInput" id="artie" onkeypress="updateChat(this)"/>
+			</div>
+			<hr>
+			<div class="interrogationRoom" id="room2">
+				<p class="prisoner"> Prisoner Dresher </p>
+				<div class="prisonerResponse" id="prisonerResponse2" data-level="0">
+						<ul class="responseList" id="responseList2"></ul>			
+				</div>
+				<p class="command" >address the prisoner:</p>
+
+				<input type="text" class="userInput" id="judd" onkeypress="updateChat(this)"/>
+			</div>
+		</div>
+		<div id="hintBoxWrapper">
+			<div id="hintBox" onclick="getHint()">
+				<p class="hintText" id="hintPrompt"> Click here for a hint. </p>
+				<p class="hintText" id="hintContent"> Start with artie. </p>
+			</div>
+		</div>
+	</body>
+</html>
+
