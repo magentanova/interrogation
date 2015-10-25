@@ -10,12 +10,10 @@
             scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
             rel='stylesheet' type='text/css'>
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="interrogate.js"></script>
-	<link rel="SHORTCUT ICON" href="../../images/jailbars.ico" type="image/x-icon" />
-	<link rel="ICON" href="../../images/jailbars.ico" type="image/ico" />
+	<script src="script.js"></script>
 	<title> behold the man </title>
 	</head>
-	<body onload = "setScroll();initChat()">
+	<body>
 		<div id="briefContainer">
 			<p id="briefTitle"><strong> Brief </strong> <br></p>
 			<ul id="briefText">  
@@ -28,22 +26,22 @@
 		<div class="roomsContainer">
 			<div class="interrogationRoom" id="room1">
 				<p class="prisoner"> Prisoner Flood </p>
-				<div class="prisonerResponse" id="prisonerResponseA" data-level="0">
-						<ul class="responseList" id="responseListA"></ul>			
+				<div class="prisonerResponse" id="artie" data-level="0">
+						<ul class="responseList" id="artie"></ul>			
 				</div>
 				<p class="command" >address the prisoner:</p>
 
-				<input type="text" class="userInput" id="artie" onkeypress="updateChat(this)"/>
+				<input type="text" class="userInput" id="artie" />
 			</div>
 			<hr>
 			<div class="interrogationRoom" id="room2">
 				<p class="prisoner"> Prisoner Dresher </p>
-				<div class="prisonerResponse" id="prisonerResponse2" data-level="0">
-						<ul class="responseList" id="responseList2"></ul>			
+				<div class="prisonerResponse" id="judd" data-level="0">
+						<ul class="responseList" id="judd"></ul>			
 				</div>
 				<p class="command" >address the prisoner:</p>
 
-				<input type="text" class="userInput" id="judd" onkeypress="updateChat(this)"/>
+				<input type="text" class="userInput" id="judd" />
 			</div>
 		</div>
 		<div id="hintBoxWrapper">
@@ -52,6 +50,7 @@
 				<p class="hintText" id="hintContent"> Start with artie. </p>
 			</div>
 		</div>
+		<script src="interrogate.js"></script>
 	</body>
 </html>
 
