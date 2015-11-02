@@ -108,7 +108,8 @@ window.onload = function(){
 		responseEl.innerHTML = response
 		$(ulSelector).append(responseEl)
 		$(ulSelector).scrollTop($(ulSelector)) // scroll to bottom of window, like in a chat interface
-		e.target.innerHTML = ''
+		e.currentTarget.value = ''
+		console.log(e.currentTarget)
 		}
 	}
 
