@@ -10,14 +10,14 @@ window.onload = function(){
 	} 
 	if (!localStorage.juddLevel){
 		localStorage.juddLevel = 0
-	} 	// note: theScript will store the static, unchanging script for the game. localStorage will store the current STATE of the game. variable names can get similar.
+	} 	// note: theScript will store the static, unchanging script for the game. localStorage will store the current STATE of the game. variable names will sometimes look similar, but don't be confused.
 	localStorage.artieLevel = 0
 	localStorage.juddLevel = 0
+
 	// GLOBAL VARS
 	ENTER_CODE = 13
 
 	// UTILITY FUNCTIONS
-
 	Array.prototype.contains = function(el){
 		return this.indexOf(el) !== -1
 	}
@@ -26,7 +26,10 @@ window.onload = function(){
 		return this[randInRange(0,this.length - 1)]
 	}
 
+	// write a function that will remove the first li item contained in a DOM Node
+
 	Node.prototype.clearChildren = function() {
+		// remove all event listeners on each child as well
 		while (this.firstChild){
 			this.removeChild(this.firstChild)
 		}
@@ -99,14 +102,13 @@ window.onload = function(){
 		if (e.keyCode === ENTER_CODE) {
 			var charName = e.target.id,
 			ulSelector = 'ul#' + charName,
-			inputSelector = 'input#' + charName,
-			inputStr = $(inputSelector).val(),
+			inputStr = e.target.value,
 			response = getResponse(inputStr,charName),
 			responseEl = document.createElement('li')
 		responseEl.innerHTML = response
 		$(ulSelector).append(responseEl)
 		$(ulSelector).scrollTop($(ulSelector)) // scroll to bottom of window, like in a chat interface
-		window.responseEl = responseEl
+		e.target.innerHTML = ''
 		}
 	}
 
