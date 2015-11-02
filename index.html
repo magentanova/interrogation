@@ -9,6 +9,7 @@
             crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
             scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
             rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="./nlp_compromise/client_side/nlp.min.js"></script>
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="script.js"></script>
 	<title> behold the man </title>
@@ -33,7 +34,6 @@
 
 				<input type="text" class="userInput" id="artie" />
 			</div>
-			<hr>
 			<div class="interrogationRoom" id="room2">
 				<p class="prisoner"> Prisoner Dresher </p>
 				<div class="prisonerResponse" id="judd" data-level="0">
@@ -44,11 +44,8 @@
 				<input type="text" class="userInput" id="judd" />
 			</div>
 		</div>
-		<div id="hintBoxWrapper">
-			<div id="hintBox" onclick="getHint()">
-				<p class="hintText" id="hintPrompt"> Click here for a hint. </p>
-				<p class="hintText" id="hintContent"> Start with artie. </p>
-			</div>
+		<div id="hintBox">
+			<p class="hintText" id="hintPrompt"> Click here for a hint. </p>
 		</div>
 		<script src="interrogate.js"></script>
 	</body>
