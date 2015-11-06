@@ -1,6 +1,5 @@
 window.onload = function(){
 
-
 	window.nlp = nlp
 	window.jquery = $
 
@@ -15,7 +14,11 @@ window.onload = function(){
 	localStorage.juddLevel = 0
 
 	// GLOBAL VARS
-	ENTER_CODE = 13
+	var crackActual = { 
+			artie: $('.crackActual#artie'),
+			judd: $('.crackActual#judd')
+		},
+		ENTER_CODE = 13
 
 	// UTILITY FUNCTIONS
 	Array.prototype.contains = function(el){
@@ -25,8 +28,6 @@ window.onload = function(){
 	Array.prototype.choice = function(){
 		return this[randInRange(0,this.length - 1)]
 	}
-
-	// write a function that will remove the first li item contained in a DOM Node
 
 	Node.prototype.clearChildren = function() {
 		// remove all event listeners on each child as well
@@ -43,7 +44,7 @@ window.onload = function(){
 		var thisLevel = localStorage[charName + 'Level']
 			levelData = theScript[charName][thisLevel]
 		if (inputIsPersuasive(inputStr,charName)) {
-			localStorage[charName + 'Level'] = parseInt(localStorage[charName + 'Level'] + 1)
+			updateLevel(charName) // update localStorage and expand red circle
 			return levelData['advancementLine']
 		}
 		else {
@@ -80,6 +81,14 @@ window.onload = function(){
 		return inputStr
 	}
 
+	var updateLevel = function(charName) {
+		localStorage[charName + 'Level'] = parseInt(localStorage[charName + 'Level'] + 1)
+		var currentWidth = parseInt(crackActual[charName].css('width')),
+			currentWidth = currentWidth + .5
+		crackActual[charName].css({width: currentWidth + 'rem',height: currentWidth + 'rem'})
+		console.log(crackActual[charName])
+	}
+
 	var inputIsPersuasive = function(inputStr,charName){
 		var thisLevel = localStorage[charName + 'Level']
 		window.script = theScript[charName]
@@ -101,13 +110,13 @@ window.onload = function(){
 	var chatSubmissionHandler = function(e){
 		if (e.keyCode === ENTER_CODE) {
 			var charName = e.target.id,
-			ulSelector = 'ul#' + charName,
+			ulEl = $('ul#' + charName),
 			inputStr = e.target.value,
 			response = getResponse(inputStr,charName),
 			responseEl = document.createElement('li')
 		responseEl.innerHTML = response
-		$(ulSelector).append(responseEl)
-		$(ulSelector).scrollTop($(ulSelector)) // scroll to bottom of window, like in a chat interface
+		ulEl.append(responseEl)
+		ulEl.scrollTop(ulEl.height()) // scroll to bottom of window, like in a chat interface
 		e.currentTarget.value = ''
 		console.log(e.currentTarget)
 		}
