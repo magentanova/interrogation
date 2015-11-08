@@ -22,7 +22,7 @@ window.SCRIPT =
 				advancementLine: 'I have never been allowed behind the wheel of a vehicle.'
 			},
 			2: {
-				hint: 'Ok, kid. Game on.',
+				hint: '',
 				triggerTokens: ['you','drives'],
 				rotationLines: [
 					"i'm wimpy",

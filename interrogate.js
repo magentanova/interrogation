@@ -122,7 +122,6 @@ window.onload = function(){
 		ulEl.append(responseEl)
 		ulEl.scrollTop(ulEl.height()) // scroll to bottom of window, like in a chat interface
 		e.currentTarget.value = ''
-		console.log(e.currentTarget)
 		}
 	}
 
@@ -131,7 +130,7 @@ window.onload = function(){
 			hintArtie = SCRIPT['artie'][localStorage.artieLevel]['hint'],
 			hintJudd = SCRIPT['judd'][localStorage.juddLevel]['hint'],
 			newHint = [hintArtie,hintJudd].choice(),
-			prompt = "Click here for a new hint."	
+			prompt = "Click to see what you're thinking."	
 		replaceHint(box,newHint)
 		setTimeout(function(){replaceHint(box,prompt)},10000) // hint fades away after 10s
 	}
