@@ -44,6 +44,20 @@ window.onload = function(){
 		return this.indexOf(subStr) !== -1
 	}
 
+	var getRotationLine = function(inputStr,levelData){
+		var line = levelData['rotationLines'].choice(),
+			nouns = nlp.pos(inputStr).nouns().filter(function(noun){
+				return !['PRP','PP'].contains(noun.pos.tag)
+			}) // don't include pronouns
+		if (nouns.length) {
+			console.log(nouns)
+			var noun = nlp.noun(nouns.choice().normalised).pluralize() // pluralize a random noun from the list
+			line = line.replace("__NOUN__",noun)
+		}
+		else line = line.replace("__NOUN__","that")
+		return line
+	}
+
 	var getResponse = function(inputStr,charName) {
 		var thisLevel = localStorage[charName + 'Level']
 			levelData = SCRIPT[charName][thisLevel]
@@ -52,7 +66,7 @@ window.onload = function(){
 			return levelData['advancementLine']
 		}
 		else {
-			return levelData['rotationLines'].choice()
+			return getRotationLine(inputStr,levelData)
 		}
 	}
 
@@ -122,7 +136,6 @@ window.onload = function(){
 		ulEl.append(responseEl)
 		ulEl.scrollTop(ulEl.height()) // scroll to bottom of window, like in a chat interface
 		e.currentTarget.value = ''
-		console.log(e.currentTarget)
 		}
 	}
 
@@ -131,7 +144,7 @@ window.onload = function(){
 			hintArtie = SCRIPT['artie'][localStorage.artieLevel]['hint'],
 			hintJudd = SCRIPT['judd'][localStorage.juddLevel]['hint'],
 			newHint = [hintArtie,hintJudd].choice(),
-			prompt = "Click here for a new hint."	
+			prompt = "Click to see what you're thinking."	
 		replaceHint(box,newHint)
 		setTimeout(function(){replaceHint(box,prompt)},10000) // hint fades away after 10s
 	}
