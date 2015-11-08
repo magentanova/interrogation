@@ -134,7 +134,7 @@ window.onload = function(){
 			responseEl = document.createElement('li')
 		responseEl.innerHTML = response
 		ulEl.append(responseEl)
-		ulEl.scrollTop(ulEl.height()) // scroll to bottom of window, like in a chat interface
+		ulEl.scrollTop(ulEl.prop('scrollHeight')) // scroll to bottom of window, like in a chat interface
 		e.currentTarget.value = ''
 		}
 	}
