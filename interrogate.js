@@ -9,7 +9,7 @@ window.onload = function(){
 	} 
 	if (!localStorage.juddLevel){
 		localStorage.juddLevel = 0
-	} 	// note: theScript will store the static, unchanging script for the game. localStorage will store the current STATE of the game. variable names will sometimes look similar, but don't be confused.
+	} 	// note: SCRIPT will store the static, unchanging script for the game. localStorage will store the current STATE of the game. variable names will sometimes look similar, but don't be confused.
 	localStorage.artieLevel = 0
 	localStorage.juddLevel = 0
 
@@ -18,7 +18,11 @@ window.onload = function(){
 			artie: $('.crackActual#artie'),
 			judd: $('.crackActual#judd')
 		},
-		ENTER_CODE = 13
+		ENTER_CODE = 13,
+		INCREMENTS = {
+			artie: $('.crackTracker').width() / Object.keys(SCRIPT.artie).length,
+			judd: $('.crackTracker').width() / Object.keys(SCRIPT.judd).length
+		} // how much to expand the circle of "crackedness" with each correct entry
 
 	// UTILITY FUNCTIONS
 	Array.prototype.contains = function(el){
@@ -42,7 +46,7 @@ window.onload = function(){
 
 	var getResponse = function(inputStr,charName) {
 		var thisLevel = localStorage[charName + 'Level']
-			levelData = theScript[charName][thisLevel]
+			levelData = SCRIPT[charName][thisLevel]
 		if (inputIsPersuasive(inputStr,charName)) {
 			updateLevel(charName) // update localStorage and expand red circle
 			return levelData['advancementLine']
@@ -84,16 +88,16 @@ window.onload = function(){
 	var updateLevel = function(charName) {
 		localStorage[charName + 'Level'] = parseInt(localStorage[charName + 'Level'] + 1)
 		var currentWidth = parseInt(crackActual[charName].css('width')),
-			currentWidth = currentWidth + .5
-		crackActual[charName].css({width: currentWidth + 'rem',height: currentWidth + 'rem'})
-		console.log(crackActual[charName])
+			currentWidth = currentWidth + INCREMENTS[charName]
+		crackActual[charName].css({width: currentWidth + 'px',height: currentWidth + 'px'})
+		console.log(INCREMENTS[charName])
 	}
 
 	var inputIsPersuasive = function(inputStr,charName){
 		var thisLevel = localStorage[charName + 'Level']
-		window.script = theScript[charName]
+		window.script = SCRIPT[charName]
 		console.log(thisLevel)
-		var	triggerTokens = theScript[charName][thisLevel]['triggerTokens']
+		var	triggerTokens = SCRIPT[charName][thisLevel]['triggerTokens']
 		normalStr = toSingular(toPresent(inputStr)),
 		tokenObjs = nlp.tokenize(normalStr)[0].tokens
 		inputTokens = tokenObjs.map(function(obj){return obj.normalised})
@@ -124,8 +128,8 @@ window.onload = function(){
 
 	var showHint = function(e) {
 		var box = e.currentTarget
-			hintArtie = theScript['artie'][localStorage.artieLevel]['hint'],
-			hintJudd = theScript['judd'][localStorage.juddLevel]['hint'],
+			hintArtie = SCRIPT['artie'][localStorage.artieLevel]['hint'],
+			hintJudd = SCRIPT['judd'][localStorage.juddLevel]['hint'],
 			newHint = [hintArtie,hintJudd].choice(),
 			prompt = "Click here for a new hint."	
 		replaceHint(box,newHint)
